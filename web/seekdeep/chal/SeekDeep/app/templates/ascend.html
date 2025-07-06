@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Ascend: Your Prophecy</h2>
+<ul class="list-group">
+  {% for word in prophecy %}
+    <li class="list-group-item">{{ word }}</li>
+  {% endfor %}
+</ul>
+{% endblock %}

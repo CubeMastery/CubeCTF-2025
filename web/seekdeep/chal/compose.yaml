@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  seekdeep:
+    build:
+      context: ./SeekDeep
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
+
+  adminbot:
+    build:
+      context: ./adminbot
+      dockerfile: Dockerfile
+    environment:
+      BASE_URL: "http://seekdeep:3000"
+      FLAG: "cube{Th1nk1ng_ReAL1Y_d3eEEe3333p_4a499fb6}"
+    ports:
+      - "1337:1337"
+    depends_on:
+      - seekdeep
+    restart: "no"

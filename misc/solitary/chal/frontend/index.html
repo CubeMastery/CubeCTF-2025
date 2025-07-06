@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Image Mirror</title>
+    <style type="text/css">body {
+        background: #004165;
+    }
+
+    .center {
+        position: absolute;
+        max-width: 400px;
+        min-width: 250px;
+        width: 80%;
+        left: 50%;
+        top: 30%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        color: #ffffff;
+    }
+
+    .center > * {
+        margin: 0;
+    }
+
+    #main {
+        background: #adafaf;
+        border-radius: 10px;
+        padding: 15px;
+    }
+    </style>
+</head>
+<body>
+<div class="center" id="main">
+    <br>
+    Image URL to mirror:
+    <form id="new">
+        <p><label for="url">Url: </label><input id="url" type="url" autofocus></p>
+        <input type="submit">
+    </form>
+    <script>
+        document.getElementById("new").addEventListener("submit", (e) => {
+            e.preventDefault();
+            location.href += document.getElementById("url").value;
+        })
+    </script>
+    <br>
+    <a href="/code.tar">Challenge source</a>
+    <br>
+</div>
+</body>
+</html>

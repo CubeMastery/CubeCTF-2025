@@ -1,0 +1,8 @@
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Shiloh/Documents/CTF/vtcampfeb2025/vivadostuff/testchallv1/testchallv1.srcs/sources_1/new/ram.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'RAM'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Shiloh/Documents/CTF/vtcampfeb2025/vivadostuff/testchallv1/testchallv1.srcs/sources_1/new/datapath_ctf.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'datapath_ctf'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Shiloh/Documents/CTF/vtcampfeb2025/vivadostuff/testchallv1/testchallv1.srcs/sources_1/new/ctf.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'ctf'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Shiloh/Documents/CTF/vtcampfeb2025/vivadostuff/testchallv1/testchallv1.srcs/sim_1/new/ctf_testbench.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'ctf_testbench'

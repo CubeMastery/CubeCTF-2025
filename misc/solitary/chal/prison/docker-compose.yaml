@@ -1,0 +1,7 @@
+services:
+  solitary:
+    build:
+      context: .
+    ports:
+      - "5005:5005"
+    restart: always

@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Mystic Colors</h2>
+<p>These colors resonate with your soul:</p>
+<ul class="list-group">
+  {% for color in colors %}
+    <li class="list-group-item" style="background-color: {{ color|lower }}; color: white;">{{ color }}</li>
+  {% endfor %}
+</ul>
+{% endblock %}

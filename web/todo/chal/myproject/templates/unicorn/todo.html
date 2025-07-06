@@ -1,0 +1,23 @@
+<div>
+  <p> todo: finish designing frontend for todo </p>
+  <form unicorn:submit.prevent="add">
+    <input type="text"
+      unicorn:model.defer="task"
+      unicorn:keyup.escape="task=''"
+      placeholder="New task" id="task"></input>
+  </form>
+  <button unicorn:click="add">Add</button>
+  <button unicorn:click="$reset">Clear all tasks</button>
+
+  <p>
+    {% if tasks %}
+      <ul>
+        {% for task in tasks %}
+          <li>{{ task }}</li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      No tasks ??
+    {% endif %}
+  </p>
+</div>

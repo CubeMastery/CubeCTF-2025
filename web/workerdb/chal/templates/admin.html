@@ -1,0 +1,25 @@
+{% extends 'layout.html' %}
+{% block content %}
+<h3>admin panel:</h3>
+<br />
+<h3 id="message"></h3>
+<h5 id="flag"></h5>
+<br />
+<a href=/>↩ back</a>
+<script>
+  const $ = document.querySelector.bind(document);
+  window.onload = async () => {
+    const response = await fetch('/api/admin');
+    const data = await response.json();
+
+    if (data.error) {
+      alert(data.error);
+      window.location = '/';
+      return;
+    }
+
+    $('#message').innerText = data.message;
+    $('#flag').innerText = data.flag;
+  };
+</script>
+{% endblock %}

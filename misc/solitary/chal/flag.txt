@@ -1,0 +1,1 @@
+cube{example_flag}

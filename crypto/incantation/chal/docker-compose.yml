@@ -1,0 +1,10 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    privileged: true
+    ports:
+      - "5757:5757"
+    environment:
+      - FLAG=cube{4br4c4d4br4_sh3z4m_pr3st0_98f814ff}

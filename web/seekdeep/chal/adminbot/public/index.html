@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin Bot Trigger</title>
+</head>
+<body>
+  <h1>Trigger the Admin Bot</h1>
+
+  <form id="admin-form">
+    <div>
+      <label for="url">Target URL:</label>
+      <input type="text" id="url" name="url" placeholder="https://example.com" required>
+    </div>
+
+    <div>
+      <label for="user">Username to follow:</label>
+      <input type="text" id="user" name="user" placeholder="someusername" required>
+    </div>
+
+    <button type="submit">Trigger Admin</button>
+  </form>
+
+  <div id="status"></div>
+
+  <script>
+    document.getElementById('admin-form').addEventListener('submit', async (event) => {
+      event.preventDefault();
+
+      const url = document.getElementById('url').value.trim();
+      const user = document.getElementById('user').value.trim();
+
+      try {
+        const response = await fetch('/visit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ url, user })
+        });
+
+        const result = await response.text();
+        document.getElementById('status').textContent = result;
+      } catch (err) {
+        document.getElementById('status').textContent = 'Error: ' + err;
+      }
+    });
+  </script>
+</body>
+</html>

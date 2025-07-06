@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}
+{% block content %}
+<h3>register:</h3>
+<br />
+<form>
+  <label for="username">username:</label> <input name="username" id="username" placeholder="username"><br />
+  <label for="password">password:</label> <input name="password" id="password" placeholder="password" type="password"><br />
+  <input type="submit" value="register" />
+</form>
+<br />
+<a href=/>↩ back</a>
+<script>
+  const $ = document.querySelector.bind(document);
+  $('form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const username = $('#username').value;
+    const password = $('#password').value;
+    const response = await fetch('/api/register', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ username, password })
+    });
+
+    const data = await response.json();
+    if (data.error) {
+      alert(data.error);
+      return;
+    }
+
+    alert(data.message);
+    window.location = '/login';
+  });
+</script>
+{% endblock %}

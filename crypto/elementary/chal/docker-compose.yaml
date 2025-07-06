@@ -1,0 +1,10 @@
+services:
+  elementary:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    privileged: true
+    ports:
+      - "3456:5000"
+    environment:
+      - JAIL_ENV_FLAG=cube{3l3m3nt4ry_mY_d34r_w47s0n_181c2f60}

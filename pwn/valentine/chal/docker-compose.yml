@@ -1,0 +1,7 @@
+version: '3.3'
+services:
+  valentine:
+    build: .
+    ports:
+      - 42042:5000
+    privileged: true

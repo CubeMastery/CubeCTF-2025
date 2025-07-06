@@ -1,0 +1,100 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+<h2>welcome, {{ user }}!</h2> 
+<h4>user attributes:</h4>
+<table>
+  <tbody>
+    {% for attr in attributes.items() %}
+    {% if attr[1] != "" %}
+    <tr>
+      <th>{{ attr[0] }}</th>
+      <td>{{ attr[1] }}</td>
+    </tr>
+    {% endif %}
+    {% endfor %}
+  </tbody>
+</table>
+<hr />
+
+<h4>change attribute:</h4>
+<form id="change-attr">
+  <label for="attribute">attribute:</label> 
+  <select name="attribute">
+    {% for attr in allowed_attrs %}
+    <option value="{{ attr }}">{{ attr }}</option>
+    {% endfor %}
+  </select><br />
+  <label for="value">value:</label>
+  <input type="text" name="value"><br />
+  <input type="submit" value="change">
+</form>
+<script>
+  const $ = document.querySelector.bind(document);
+  $('#change-attr').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const attribute = $('#change-attr > select[name="attribute"]').value;
+    const value = $('#change-attr > input[name="value"]').value;
+
+    const response = await fetch('/api/settings/update', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ [attribute]: value })
+    });
+
+    const data = await response.json();
+    if (data.error) {
+      alert(data.error);
+      return;
+    }
+
+    alert(data.message);
+    window.location = '/';
+  });
+</script>
+
+{% if attributes["role"] is defined and attributes["role"] != "user" %}
+<hr />
+<h4>manage permissions:</h4>
+<form id="manage-perms">
+  <label for="target">target user:</label>
+  <input type="text" name="target"><br />
+  <label for="role">new role:</label>
+  <input type="text" name="role"><br />
+  <input type="submit" value="update">
+</form>
+<script>
+  $('#manage-perms').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const target = $('#manage-perms > input[name="target"]').value;
+    const role = $('#manage-perms > input[name="role"]').value;
+
+    const response = await fetch('/api/manage/permissions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ target_user: target, new_role: role })
+    });
+
+    const data = await response.json();
+    if (data.error) {
+      alert(data.error);
+      return;
+    }
+
+    alert(data.message);
+    window.location = '/';
+  });
+</script>
+{% endif %}
+
+{% if attributes["role"] is defined and attributes["role"] == "admin" %}
+<hr />
+<h4>admin panel</h4>
+<a href="/admin">view</a>
+{% endif %}
+
+{% endblock %}

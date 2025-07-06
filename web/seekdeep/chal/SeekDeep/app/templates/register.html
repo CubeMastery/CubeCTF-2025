@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Register for SeekDeep</h2>
+<form method="post">
+  <div class="mb-3">
+    <label class="form-label">Username</label>
+    <input type="text" class="form-control" name="username" required>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Password</label>
+    <input type="password" class="form-control" name="password" required>
+  </div>
+  <hr>
+  <h5>Weird and Wonderful Details</h5>
+  <div class="mb-3">
+    <label class="form-label">Head Size (in cm)</label>
+    <input type="number" step="0.1" class="form-control" name="head_size" required>
+  </div>
+  <div class="form-check mb-3">
+    <input type="checkbox" class="form-check-input" name="is_bald">
+    <label class="form-check-label">Are you bald?</label>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">How is your eyesight? (e.g., 20/20)</label>
+    <input type="text" class="form-control" name="eyesight" required>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Largest number you can count to?</label>
+    <input type="text" class="form-control" name="largest_count" required>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Favorite Vegetable</label>
+    <input type="text" class="form-control" name="favorite_vegetable" required>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Preferred Cosmic Color</label>
+    <input type="text" class="form-control" name="cosmic_color" required>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Number of Left Shoes You Own</label>
+    <input type="number" class="form-control" name="left_shoes" required>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">If you were a mythical creature, which one?</label>
+    <input type="text" class="form-control" name="mythical_creature" required>
+  </div>
+  <button type="submit" class="btn btn-primary">Register</button>
+</form>
+{% endblock %}

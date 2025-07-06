@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="text-center">
+  <h1>Welcome to SeekDeep</h1>
+  <p>Join us to receive deep prophecies and unlock the mysteries of your destiny.</p>
+  {% if not session.get('user_id') %}
+    <a href="{{ url_for('register') }}" class="btn btn-primary me-2">Sign Up</a>
+    <a href="{{ url_for('login') }}" class="btn btn-secondary">Login</a>
+  {% endif %}
+</div>
+{% endblock %}

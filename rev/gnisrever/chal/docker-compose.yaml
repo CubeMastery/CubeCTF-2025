@@ -1,0 +1,12 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    privileged: true
+    ports:
+      - "5000:5000"
+    environment:
+      - JAIL_TMP_SIZE=10K
+      - JAIL_POW=1000
+      - JAIL_ENV_FLAG="cube{d1d_yo0_d0_1t_th3_h4rd_w4y_0r_th3_34sy_w4y_38d50a54}"

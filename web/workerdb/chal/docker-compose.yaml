@@ -1,0 +1,8 @@
+services:
+  workerdb:
+    build:
+      context: .
+    ports:
+      - "5500:5500"
+    environment:
+      - FLAG: "cube{putt1ng_1n_th3_h0urs_pays_0ff_31530cdc}"

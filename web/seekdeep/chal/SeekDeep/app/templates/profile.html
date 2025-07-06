@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+  <div class="card-header">
+    <h2>Your Profile</h2>
+  </div>
+  <div class="card-body">
+    <table class="table">
+      <tr>
+        <th>Username</th>
+        <td>{{ user.username }}</td>
+      </tr>
+      <tr>
+        <th>Head Size (cm)</th>
+        <td>{{ user.head_size }}</td>
+      </tr>
+      <tr>
+        <th>Are you bald?</th>
+        <td>{{ 'Yes' if user.is_bald else 'No' }}</td>
+      </tr>
+      <tr>
+        <th>Eyesight</th>
+        <td>{{ user.eyesight }}</td>
+      </tr>
+      <tr>
+        <th>Largest Number You Can Count To</th>
+        <td>{{ user.largest_count }}</td>
+      </tr>
+      <tr>
+        <th>Favorite Vegetable</th>
+        <td>{{ user.favorite_vegetable }}</td>
+      </tr>
+      <tr>
+        <th>Preferred Cosmic Color</th>
+        <td>{{ user.cosmic_color }}</td>
+      </tr>
+      <tr>
+        <th>Number of Left Shoes</th>
+        <td>{{ user.left_shoes }}</td>
+      </tr>
+      <tr>
+        <th>Mythical Creature</th>
+        <td>{{ user.mythical_creature }}</td>
+      </tr>
+    </table>
+  </div>
+</div>
+{% endblock %}

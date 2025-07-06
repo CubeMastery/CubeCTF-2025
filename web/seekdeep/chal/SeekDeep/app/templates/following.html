@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Followers</h2>
+<ul class="list-group" id="followers-list">
+</ul>
+<div id="no-followers" class="alert alert-info" style="display: none;">
+  You have no followers yet.
+</div>
+
+<h2>Following</h2>
+<ul class="list-group" id="following-list">
+</ul>
+<div id="no-following" class="alert alert-info" style="display: none;">
+  You are not following anyone yet.
+</div>
+
+<form action="{{ url_for('social') }}" method="POST">
+  <h3>Follow a User</h3>
+  <input type="text" name="follower_username" placeholder="Username to follow" required>
+  <button type="submit" class="btn btn-primary">Follow</button>
+</form>
+
+<script>
+  function fetchFollowingData() {
+    fetch("{{ url_for('get_following') }}", {
+      method: 'GET',
+      headers: { "X-Requested-With": "XMLHttpRequest", "pragma": "no-cache", "cache-control": "no-cache" }
+    })
+    .then(response => response.text())
+    .then(data => {
+      console.log('Following data:', data);
+      const result = JSON.parse(data);
+      const followersList = document.getElementById('followers-list');
+      const followingList = document.getElementById('following-list');
+      const noFollowers = document.getElementById('no-followers');
+      const noFollowing = document.getElementById('no-following');
+
+      followersList.innerHTML = '';
+      followingList.innerHTML = '';
+
+      if (result.followers.length === 0) {
+        noFollowers.style.display = 'block';
+      } else {
+        noFollowers.style.display = 'none';
+        result.followers.forEach(follower => {
+          const li = document.createElement('li');
+          li.classList.add('list-group-item');
+          li.textContent = `${follower.username}`;
+          followersList.appendChild(li);
+        });
+      }
+
+      if (result.following.length === 0) {
+        noFollowing.style.display = 'block';
+      } else {
+        noFollowing.style.display = 'none';
+        result.following.forEach(following => {
+          const li = document.createElement('li');
+          li.classList.add('list-group-item');
+          li.textContent = `${following.username}`;
+
+          const deleteBtn = document.createElement('button');
+          deleteBtn.textContent = 'Unfollow';
+          deleteBtn.classList.add('btn', 'btn-danger', 'btn-sm');
+          deleteBtn.style.marginLeft = '10px';
+          deleteBtn.onclick = () => deleteFollowing(following.username);
+
+          li.appendChild(deleteBtn);
+          followingList.appendChild(li);
+        });
+      }
+    })
+    .catch(error => console.error('Error fetching following data:', error));
+  }
+
+  function deleteFollowing(username) {
+    fetch(`{{ url_for('social') }}?username=${username}`, {
+      method: 'DELETE',
+    })
+    .then(response => response.text())
+    .then(data => {
+      fetchFollowingData();
+    })
+    .catch(error => console.error('Error unfollowing user:', error));
+  }
+
+  document.addEventListener('DOMContentLoaded', fetchFollowingData);
+</script>
+
+{% endblock %}
